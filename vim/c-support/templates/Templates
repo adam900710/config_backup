@@ -1,0 +1,16 @@
+§ =============================================================
+§  User Macros
+§ =============================================================
+
+SetMacro( 'AUTHOR',      'Adam' )
+SetMacro( 'AUTHORREF',   '' )
+SetMacro( 'COMPANY',     '' )
+SetMacro( 'COPYRIGHT',   '' )
+SetMacro( 'EMAIL',       '' )
+SetMacro( 'LICENSE',     '' )
+SetMacro( 'ORGANIZATION','' )
+
+§ =============================================================
+§  File Includes and Shortcuts
+§ =============================================================
+

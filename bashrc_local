@@ -1,0 +1,40 @@
+# /etc/bash/bashrc
+#
+# This file is sourced by all *interactive* bash shells on startup,
+# including some apparently interactive shells such as scp and rcp
+# that can't tolerate any output.  So make sure this doesn't display
+# anything or bad things will happen !
+
+
+[ -r /etc/bash.bashrc.local ] && . /etc/bash.bashrc.local
+
+# For Ruby on Rails
+[ -d $HOME/.gem/ruby/1.9.1/bin/ ] && export PATH=$PATH:$HOME/.gem/ruby/1.9.1/bin
+
+
+# For colored man page
+
+man() {
+	env \
+		LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+		LESS_TERMCAP_md=$(printf "\e[1;31m") \
+		LESS_TERMCAP_me=$(printf "\e[0m") \
+		LESS_TERMCAP_se=$(printf "\e[0m") \
+		LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+		LESS_TERMCAP_ue=$(printf "\e[0m") \
+		LESS_TERMCAP_us=$(printf "\e[1;32m") \
+			man "$@"
+}
+
+# Hot fix for vim with clang-completion
+#vim() {
+#	/usr/bin/vim $@ 2> /dev/null
+#}
+# For colored core commands
+#[ -d /usr/share/perl5/vendor_perl/auto/share/dist/Cope/ ] &&  export PATH=/usr/share/perl5/vendor_perl/auto/share/dist/Cope:$PATH
+
+# For ccache
+export PATH="/usr/lib/ccache/bin/:$PATH"
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd_vrgb -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+
+#export LANG=zh_CN.UTF-8

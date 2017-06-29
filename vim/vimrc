@@ -1,0 +1,84 @@
+" Basic conf
+set bg=dark
+set fileencodings=utf-8,cp932,cp936
+
+" No backup and autowrite
+set nobk
+set noswapfile
+set autowrite
+
+"nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+"nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+"nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+" Code folding 
+set foldenable
+set foldnestmax=10
+set foldlevel=0
+set foldmethod=syntax
+
+" clang complete
+set pumheight=20
+let g:clang_library_path="/usr/lib"
+let g:clang_use_library=1
+let g:clang_snippets=1
+let g:clang_snippets_engine="clang_complete"
+let g:clang_complete_macros=1
+
+" UltiSnips
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-m>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-m>"
+
+" Color scheme
+set number
+colorscheme kolor
+let g:kolor_italic=1
+
+" gVim config
+if has('gui_running')
+  set guifont=文泉驿等宽微米黑\ 11
+  set guioptions-=m
+  set guioptions-=T
+  set guioptions-=r
+  set guioptions-=L
+endif
+
+" Cscope
+if has("cscope")
+    if filereadable("cscope.out")
+        cs add cscope.out
+    endif
+endif
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>a :cs find a <C-R>=expand("<cword>")<CR><CR>
+
+" Per-project config
+function! ProjectSetup()
+	let l:path = expand('%:p')
+	if l:path =~ '/home/adam/qemu'
+		if &filetype == 'c' || &filetype == 'cpp'
+			setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab smarttab
+		endif
+	endif
+endfunction
+autocmd! BufReadPost,BufNewFile * call ProjectSetup()
+
+set laststatus=2
+
+" Airline
+let g:airline_theme="kolor"
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#wordcount#enabled = 0
