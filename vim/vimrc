@@ -76,6 +76,7 @@ function! ProjectSetup()
 endfunction
 autocmd! BufReadPost,BufNewFile * call ProjectSetup()
 
+set hls
 set laststatus=2
 
 " Airline
